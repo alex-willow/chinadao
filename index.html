@@ -14954,7 +14954,7 @@ window.fetch = async function(...args) {
     console.log('📨 Ответ от Formspree:', response.status);
     
     if (response.ok) {
-      alert('✅ Заявка отправлена! Ожидайте ответа в мессенджере.');
+      alert('✅ Заявка отправлена! Я отвечу вам как можно скорее');
     } else {
       const error = await response.json();
       console.error('Ошибка Formspree:', error);
