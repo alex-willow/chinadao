@@ -1,8 +1,8 @@
 export const en = {
   meta: {
-    title: 'Admission to universities in China | China Dao',
+    title: 'Study in China: University Admission & Scholarships | ChinaDao',
     description:
-      'I help students get into Chinese universities: I select programs and scholarships, prepare documents, submit applications, and guide you at every step.',
+      'Personal curator Ekaterina Gantimurova helps you get into Chinese universities: programs, scholarships, documents, and applications. 110+ successful admissions.',
   },
   nav: {
     language: 'Language',

@@ -1,12 +1,12 @@
 import { img } from '../../data/content'
-import { useLocale } from '../../i18n/LocaleContext'
+import { useLocale, pathForLang } from '../../i18n/LocaleContext'
 import SocialIcons from '../shared/SocialIcons'
 import Reveal from '../shared/Reveal'
 import { scrollToHref } from '../../utils/scrollTo'
 import './Footer.css'
 
 export default function Footer() {
-  const { t } = useLocale()
+  const { t, lang } = useLocale()
 
   return (
     <footer className="footer">
@@ -14,7 +14,7 @@ export default function Footer() {
         <div className="footer__grid">
           <div className="footer__brand">
             <a
-              href="/"
+              href={pathForLang(lang)}
               className="footer__logo"
               onClick={(event) => scrollToHref(event, '#')}
             >

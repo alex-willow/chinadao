@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { useLocale } from '../../i18n/LocaleContext'
+import { useLocale, pathForLang } from '../../i18n/LocaleContext'
 import CountryFlag from '../CountryFlag/CountryFlag'
 import './LanguageSwitcher.css'
 
@@ -56,12 +56,14 @@ export default function LanguageSwitcher({ className = '', variant = 'compact', 
         <ul className="lang-switch__menu" role="listbox" aria-label={t.nav.language}>
           {LANGUAGES.map((item) => (
             <li key={item.value}>
-              <button
-                type="button"
+              <a
+                href={pathForLang(item.value)}
+                hrefLang={item.value}
                 className={`lang-switch__option${item.value === lang ? ' lang-switch__option--active' : ''}`}
                 role="option"
                 aria-selected={item.value === lang}
-                onClick={() => {
+                onClick={(event) => {
+                  event.preventDefault()
                   setLang(item.value)
                   setOpen(false)
                   onPicked?.()
@@ -70,7 +72,7 @@ export default function LanguageSwitcher({ className = '', variant = 'compact', 
                 <span className="drawn drawn--outline lang-switch__option-hover" aria-hidden="true" />
                 <CountryFlag country={item.country} />
                 <span>{item.label}</span>
-              </button>
+              </a>
             </li>
           ))}
         </ul>

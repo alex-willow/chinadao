@@ -15,10 +15,21 @@ function upsertMeta(selector, attrs) {
 }
 
 function upsertLink(rel, href) {
-  let el = document.head.querySelector(`link[rel="${rel}"]`)
+  let el = document.head.querySelector(`link[rel="${rel}"]:not([hreflang])`)
   if (!el) {
     el = document.createElement('link')
     el.setAttribute('rel', rel)
+    document.head.appendChild(el)
+  }
+  el.setAttribute('href', href)
+}
+
+function upsertHreflang(hreflang, href) {
+  let el = document.head.querySelector(`link[rel="alternate"][hreflang="${hreflang}"]`)
+  if (!el) {
+    el = document.createElement('link')
+    el.setAttribute('rel', 'alternate')
+    el.setAttribute('hreflang', hreflang)
     document.head.appendChild(el)
   }
   el.setAttribute('href', href)
@@ -28,6 +39,7 @@ export default function Seo() {
   const { lang, t } = useLocale()
 
   useEffect(() => {
+    const pageUrl = lang === 'en' ? `${SITE_URL}/en` : `${SITE_URL}/`
     const title = t.meta.title
     const description = t.meta.description
     document.title = title
@@ -36,10 +48,15 @@ export default function Seo() {
     upsertMeta('meta[name="description"]', { name: 'description', content: description })
     upsertMeta('meta[property="og:title"]', { property: 'og:title', content: title })
     upsertMeta('meta[property="og:description"]', { property: 'og:description', content: description })
+    upsertMeta('meta[property="og:url"]', { property: 'og:url', content: pageUrl })
     upsertMeta('meta[property="og:locale"]', { property: 'og:locale', content: lang === 'en' ? 'en_US' : 'ru_RU' })
     upsertMeta('meta[name="twitter:title"]', { name: 'twitter:title', content: title })
     upsertMeta('meta[name="twitter:description"]', { name: 'twitter:description', content: description })
-    upsertLink('canonical', `${SITE_URL}/`)
+    upsertLink('canonical', pageUrl)
+
+    upsertHreflang('ru', `${SITE_URL}/`)
+    upsertHreflang('en', `${SITE_URL}/en`)
+    upsertHreflang('x-default', `${SITE_URL}/`)
   }, [lang, t])
 
   const jsonLd = {
@@ -81,7 +98,7 @@ export default function Seo() {
       {
         '@type': 'WebSite',
         '@id': `${SITE_URL}/#website`,
-        url: `${SITE_URL}/`,
+        url: lang === 'en' ? `${SITE_URL}/en` : `${SITE_URL}/`,
         name: 'ChinaDao',
         inLanguage: lang === 'en' ? 'en' : 'ru',
         publisher: { '@id': `${SITE_URL}/#organization` },
@@ -89,7 +106,7 @@ export default function Seo() {
       {
         '@type': 'FAQPage',
         '@id': `${SITE_URL}/#faq`,
-        mainEntity: site.faq.map((item) => ({
+        mainEntity: t.faq.items.map((item) => ({
           '@type': 'Question',
           name: item.q,
           acceptedAnswer: { '@type': 'Answer', text: item.a },

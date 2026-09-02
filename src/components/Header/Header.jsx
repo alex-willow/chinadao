@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
-import { useLocale } from '../../i18n/LocaleContext'
+import { useLocale, pathForLang } from '../../i18n/LocaleContext'
 import LanguageSwitcher from '../LanguageSwitcher/LanguageSwitcher'
 import { scrollToHref } from '../../utils/scrollTo'
 import './Header.css'
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
-  const { t } = useLocale()
+  const { t, lang } = useLocale()
 
   useEffect(() => {
     document.body.classList.toggle('nav-open', menuOpen)
@@ -45,7 +45,7 @@ export default function Header() {
       <nav className="header__nav" aria-label={t.nav.aria}>
         <div className="header__inner">
           <a
-            href="/"
+            href={pathForLang(lang)}
             className="header__logo"
             onClick={(event) => {
               scrollToHref(event, '#')
