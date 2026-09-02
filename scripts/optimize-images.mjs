@@ -35,7 +35,9 @@ function maxEdge(file) {
   if (/hero-avatar/.test(name)) return 128
   if (name === 'logo.png' || name === 'logo-light.png') return 192
   if (name === 'button.png' || name === 'button-hover.png') return 640
-  if (/photo-shape|card-shape|menu-shape|nav-fill|nav-line/.test(name)) return 800
+  // Thin strips: shrinking the width also crushes their few pixels of height into a blur.
+  if (/nav-fill|nav-line/.test(name)) return 2000
+  if (/photo-shape|card-shape|menu-shape/.test(name)) return 800
   if (isPhoto(file)) return 1600
   return 1600
 }

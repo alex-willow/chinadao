@@ -174,8 +174,8 @@ html[lang='en'] .services__doodle {
   overflow: visible;
 }
 
+/* Static on purpose: the deco image inside is sized and placed against the whole panel. */
 .services__panel-copy {
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -269,6 +269,10 @@ html[lang='en'] .services__doodle {
     height: auto;
     left: 40px;
   }
+
+  .services__deco--0 {
+    left: 40px;
+  }
 }
 
 @media (max-width: 777px) {
@@ -344,7 +348,9 @@ html[lang='en'] .services__doodle {
     padding: 15px 15px 0 0;
   }
 
+  /* The panel box is gone here, so the copy column anchors the deco instead. */
   .services__panel-copy {
+    position: relative;
     grid-area: copy;
     gap: 20px;
   }
