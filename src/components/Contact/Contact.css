@@ -61,6 +61,14 @@
   width: 100%;
 }
 
+.contact__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  width: 100%;
+}
+
 .contact__form {
   display: flex;
   flex-direction: column;
@@ -220,6 +228,22 @@
 @media (max-width: 777px) {
   .contact {
     padding: 20px;
+  }
+
+  .contact__form-col {
+    display: contents;
+  }
+
+  .contact__title {
+    order: 1;
+  }
+
+  .contact__photo-col {
+    order: 2;
+  }
+
+  .contact__copy {
+    order: 3;
   }
 
   .contact__title {

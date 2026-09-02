@@ -242,6 +242,23 @@ html[lang='en'] .why__doodle {
 @media (max-width: 777px) {
   .why {
     padding: 20px;
+    gap: 24px;
+  }
+
+  .why__inner {
+    display: contents;
+  }
+
+  .why__title-wrap {
+    order: 1;
+  }
+
+  .why__photo-col {
+    order: 2;
+  }
+
+  .why__list {
+    order: 3;
   }
 
   .why__title {

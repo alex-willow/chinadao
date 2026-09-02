@@ -71,31 +71,41 @@ export default function Process() {
       pin.style.top = ''
       pin.style.height = ''
       pin.style.width = ''
+      pin.style.marginTop = ''
       track.style.height = ''
       frozen.current = false
     }
 
+    function parkedTop(el) {
+      const stick = Number.parseFloat(getComputedStyle(el).top)
+      return Number.isFinite(stick) ? stick : el.getBoundingClientRect().top
+    }
+
     function freeze() {
       if (frozen.current) return
+      layout()
       const list = [header, ...pin.querySelectorAll('.process__card')]
       const pinBox = pin.getBoundingClientRect()
-      const headerBox = header.getBoundingClientRect()
-      const lastBox = last.getBoundingClientRect()
-      const visualTop = headerBox.top
-      const visualH = lastBox.bottom - visualTop
+      const trackBox = track.getBoundingClientRect()
+      const headerStick = parkedTop(header)
+      const lastStick = parkedTop(last)
+      const lastTop = last.getBoundingClientRect().top
       const placed = list.map((el) => {
         const r = el.getBoundingClientRect()
         return {
           el,
-          top: r.top - visualTop,
+          top: parkedTop(el) - headerStick,
           left: r.left - pinBox.left,
           width: r.width,
         }
       })
+      const visualH = placed[placed.length - 1].top + last.offsetHeight
+      const pinOffset = Math.max(0, headerStick - trackBox.top)
 
-      track.style.height = `${track.offsetHeight}px`
+      track.style.height = `${Math.max(track.offsetHeight, pinOffset + visualH)}px`
+      pin.style.marginTop = `${pinOffset}px`
       pin.style.position = 'sticky'
-      pin.style.top = `${visualTop}px`
+      pin.style.top = `${headerStick}px`
       pin.style.height = `${visualH}px`
       pin.style.width = '100%'
       pin.classList.add('process__pin--frozen')
@@ -110,7 +120,7 @@ export default function Process() {
       })
 
       nodes.current = list
-      freezeY.current = window.scrollY
+      freezeY.current = window.scrollY - Math.max(0, lastStick - lastTop)
       frozen.current = true
     }
 
@@ -130,8 +140,8 @@ export default function Process() {
       }
 
       layout()
-      const stickTop = Number.parseFloat(getComputedStyle(last).top) || 0
-      if (last.getBoundingClientRect().top <= stickTop + 0.5) freeze()
+      const stickTop = parkedTop(last)
+      if (last.getBoundingClientRect().top <= stickTop + 1) freeze()
     }
 
     sync()

@@ -47,7 +47,8 @@ export default function Contact() {
         <Reveal className="contact__form-col">
           <h2 className="contact__title">{t.contact.title}</h2>
 
-          <form className="contact__form" onSubmit={handleSubmit}>
+          <div className="contact__copy">
+            <form className="contact__form" onSubmit={handleSubmit}>
             <div className="contact__row">
               <label className="contact__field">
                 <span className="contact__label">{t.contact.name}</span>
@@ -132,6 +133,7 @@ export default function Contact() {
           <div className="contact__alt">
             <p>{t.contact.altText}</p>
             <SocialIcons variant="contact" />
+          </div>
           </div>
         </Reveal>
 

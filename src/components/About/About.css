@@ -400,19 +400,19 @@ html[lang='en'] .about__doodle {
     grid-template-columns: 1fr;
   }
 
-  .about-more__row--photos-left .about-more__col,
-  .about-more__row--photos-right .about-more__col {
-    grid-column: 1;
-    grid-row: 1;
-  }
-
   .about-more__row--photos-left .about-more__photos,
   .about-more__row--photos-right .about-more__photos {
     grid-column: 1;
-    grid-row: 2;
+    grid-row: 1;
     width: min(380px, 100%);
     justify-self: center;
     max-width: 380px;
+  }
+
+  .about-more__row--photos-left .about-more__col,
+  .about-more__row--photos-right .about-more__col {
+    grid-column: 1;
+    grid-row: 2;
   }
 
   .about-grid {

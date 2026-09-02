@@ -16,20 +16,22 @@ function ServicePanel({ item, decoIndex, className = '' }) {
         </div>
       </div>
       <div className="services__panel">
-        <img
-          src={item.deco}
-          alt=""
-          className={`services__deco services__deco--${decoIndex}`}
-          decoding="async"
-        />
         <h3 className="services__panel-title">{item.title}</h3>
-        {item.text && <p className="services__panel-text">{item.text}</p>}
-        {item.subsections?.map((sub) => (
-          <div key={sub.subtitle} className="services__subsection">
-            <h4>{sub.subtitle}</h4>
-            <p>{sub.text}</p>
-          </div>
-        ))}
+        <div className="services__panel-copy">
+          <img
+            src={item.deco}
+            alt=""
+            className={`services__deco services__deco--${decoIndex}`}
+            decoding="async"
+          />
+          {item.text && <p className="services__panel-text">{item.text}</p>}
+          {item.subsections?.map((sub) => (
+            <div key={sub.subtitle} className="services__subsection">
+              <h4>{sub.subtitle}</h4>
+              <p>{sub.text}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   )

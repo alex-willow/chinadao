@@ -54,13 +54,15 @@ export default function Hero() {
               </span>
             </h1>
 
-            <div className="hero__body">
-              {t.hero.paragraphs.map((p) => (
-                <p key={p}>{p}</p>
-              ))}
-            </div>
+            <div className="hero__copy">
+              <div className="hero__body">
+                {t.hero.paragraphs.map((p) => (
+                  <p key={p}>{p}</p>
+                ))}
+              </div>
 
-            <ImageButton href="#cta">{t.hero.cta}</ImageButton>
+              <ImageButton href="#cta">{t.hero.cta}</ImageButton>
+            </div>
           </div>
 
           <div className="hero__image-col">
