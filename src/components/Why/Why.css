@@ -87,11 +87,7 @@ html[lang='en'] .why__doodle {
   align-items: stretch;
   gap: 0;
   width: 100%;
-  padding: 0;
-  background: none;
-  border: none;
-  cursor: pointer;
-  text-align: left;
+  overflow-anchor: none;
 }
 
 .why__item:hover .why__item-title {
@@ -103,6 +99,11 @@ html[lang='en'] .why__doodle {
   align-items: center;
   gap: 38px;
   width: 100%;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
 }
 
 .why__item-title {

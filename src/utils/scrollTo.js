@@ -39,3 +39,16 @@ export function scrollToHref(event, href, navigate) {
   if (node) node.scrollIntoView({ behavior: 'smooth', block: 'start' })
   history.replaceState(null, '', `${window.location.pathname}${window.location.search}`)
 }
+
+export function preserveViewportTop(el) {
+  if (!el) return
+  const top = el.getBoundingClientRect().top
+  const pin = () => {
+    const delta = el.getBoundingClientRect().top - top
+    if (Math.abs(delta) > 0.5) window.scrollBy(0, delta)
+  }
+  requestAnimationFrame(() => {
+    pin()
+    requestAnimationFrame(pin)
+  })
+}

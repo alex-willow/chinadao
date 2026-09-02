@@ -3,6 +3,7 @@ import { img } from '../../data/content'
 import { useLocale } from '../../i18n/LocaleContext'
 import AccordionFold from '../shared/AccordionFold'
 import Reveal from '../shared/Reveal'
+import { preserveViewportTop } from '../../utils/scrollTo'
 import './Faq.css'
 
 const btnOpen = img('accordion-open.png')
@@ -69,14 +70,19 @@ export default function Faq() {
           {t.faq.items.map((item, i) => {
             const isOpen = open === i
             return (
-              <button
+              <div
                 key={item.q}
-                type="button"
                 className={`faq__item${isOpen ? ' faq__item--open' : ''}`}
-                aria-expanded={isOpen}
-                onClick={() => setOpen(isOpen ? -1 : i)}
               >
-                <div className="faq__head">
+                <button
+                  type="button"
+                  className="faq__head"
+                  aria-expanded={isOpen}
+                  onClick={(event) => {
+                    preserveViewportTop(event.currentTarget)
+                    setOpen(isOpen ? -1 : i)
+                  }}
+                >
                   <p className="faq__item-title">{item.q}</p>
                   <span className="faq__toggle" aria-hidden="true">
                     <span className="faq__disc">
@@ -85,13 +91,13 @@ export default function Faq() {
                     </span>
                     <Chevron />
                   </span>
-                </div>
+                </button>
                 <AccordionFold open={isOpen}>
                   <div className="faq__fold-inner">
                     <Answer text={item.a} guardian={t.faq.guardian} guardianAlt={t.faq.guardianAlt} />
                   </div>
                 </AccordionFold>
-              </button>
+              </div>
             )
           })}
         </div>

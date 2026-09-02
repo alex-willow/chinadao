@@ -3,6 +3,7 @@ import { img } from '../../data/content'
 import { useLocale } from '../../i18n/LocaleContext'
 import AccordionFold from '../shared/AccordionFold'
 import Reveal from '../shared/Reveal'
+import { preserveViewportTop } from '../../utils/scrollTo'
 import './Why.css'
 
 const btnOpen = img('accordion-open.png')
@@ -41,14 +42,19 @@ export default function Why() {
           {t.why.items.map((item, i) => {
             const isOpen = open === i
             return (
-              <button
+              <div
                 key={item.title}
-                type="button"
                 className={`why__item${isOpen ? ' why__item--open' : ''}`}
-                aria-expanded={isOpen}
-                onClick={() => setOpen(isOpen ? -1 : i)}
               >
-                <div className="why__head">
+                <button
+                  type="button"
+                  className="why__head"
+                  aria-expanded={isOpen}
+                  onClick={(event) => {
+                    preserveViewportTop(event.currentTarget)
+                    setOpen(isOpen ? -1 : i)
+                  }}
+                >
                   <span className="why__toggle" aria-hidden="true">
                     <span className="why__disc">
                       <img src={btnClosed} alt="" className={isOpen ? 'is-off' : ''} decoding="async" />
@@ -57,13 +63,13 @@ export default function Why() {
                     <Chevron />
                   </span>
                   <p className="why__item-title">{item.title}</p>
-                </div>
+                </button>
                 <AccordionFold open={isOpen}>
                   <div className="why__fold-inner">
                     <p className="why__item-body">{item.text}</p>
                   </div>
                 </AccordionFold>
-              </button>
+              </div>
             )
           })}
         </div>

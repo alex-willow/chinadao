@@ -66,11 +66,7 @@
   align-items: stretch;
   gap: 0;
   width: 100%;
-  padding: 0;
-  background: none;
-  border: none;
-  cursor: pointer;
-  text-align: left;
+  overflow-anchor: none;
 }
 
 .faq__item:hover .faq__item-title {
@@ -82,6 +78,11 @@
   align-items: center;
   gap: 38px;
   width: 100%;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
 }
 
 .faq__item-title {

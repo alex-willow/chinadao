@@ -2,6 +2,11 @@
   height: 0;
   overflow: hidden;
   width: 100%;
+  overflow-anchor: none;
+}
+
+.accordion-fold__inner {
+  width: 100%;
 }
 
 .accordion-fold__inner {
