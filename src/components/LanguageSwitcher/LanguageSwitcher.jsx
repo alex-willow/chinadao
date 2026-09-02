@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { useLocale, pathForLang } from '../../i18n/LocaleContext'
+import { useLocale, pathForPage } from '../../i18n/LocaleContext'
 import CountryFlag from '../CountryFlag/CountryFlag'
 import './LanguageSwitcher.css'
 
@@ -21,7 +21,7 @@ function Chevron({ open }) {
 }
 
 export default function LanguageSwitcher({ className = '', variant = 'compact', onPicked }) {
-  const { lang, setLang, t } = useLocale()
+  const { lang, page, setLang, t } = useLocale()
   const [open, setOpen] = useState(false)
   const rootRef = useRef(null)
   const current = LANGUAGES.find((item) => item.value === lang) || LANGUAGES[0]
@@ -57,7 +57,7 @@ export default function LanguageSwitcher({ className = '', variant = 'compact', 
           {LANGUAGES.map((item) => (
             <li key={item.value}>
               <a
-                href={pathForLang(item.value)}
+                href={pathForPage(item.value, page)}
                 hrefLang={item.value}
                 className={`lang-switch__option${item.value === lang ? ' lang-switch__option--active' : ''}`}
                 role="option"

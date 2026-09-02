@@ -188,6 +188,36 @@
   resize: vertical;
 }
 
+.contact__consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #52525b;
+  cursor: pointer;
+}
+
+.contact__consent input {
+  margin-top: 3px;
+  flex: none;
+  width: 16px;
+  height: 16px;
+  accent-color: #233876;
+}
+
+.contact__consent a {
+  color: #233876;
+  font-weight: 600;
+  text-underline-offset: 2px;
+}
+
+.contact__consent a:hover {
+  color: #1c64f2;
+}
+
 .contact__submit-row {
   display: flex;
   width: 100%;

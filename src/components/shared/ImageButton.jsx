@@ -1,3 +1,4 @@
+import { useLocale } from '../../i18n/LocaleContext'
 import { scrollToHref } from '../../utils/scrollTo'
 import './ImageButton.css'
 
@@ -15,6 +16,7 @@ function ButtonInner({ children }) {
 }
 
 export default function ImageButton({ href, children, className = '', type, disabled, onClick }) {
+  const { navigate } = useLocale()
   const sharedClass = `image-btn ${className}`
 
   if (type === 'submit' || type === 'button') {
@@ -30,7 +32,7 @@ export default function ImageButton({ href, children, className = '', type, disa
       href={href}
       className={sharedClass}
       onClick={(event) => {
-        if (href?.startsWith('#')) scrollToHref(event, href)
+        if (href?.startsWith('#')) scrollToHref(event, href, navigate)
       }}
     >
       <ButtonInner>{children}</ButtonInner>

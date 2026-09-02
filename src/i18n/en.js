@@ -221,6 +221,7 @@ export const en = {
     packages: [
       {
         name: 'Package 1+1',
+        price: '$1,200',
         summary: 'Full support for 1 university and 1 scholarship',
         features: [
           'Consultation and case analysis',
@@ -241,6 +242,7 @@ export const en = {
       },
       {
         name: 'Package 3+3',
+        price: '$1,800',
         summary: 'Full support for 3 universities and 3 scholarships',
         features: [
           'Consultation and case analysis',
@@ -261,6 +263,7 @@ export const en = {
       },
       {
         name: 'Package 5+5',
+        price: '$2,300',
         summary: 'Full support for 5 universities and 5 scholarships',
         features: [
           'Consultation and case analysis',
@@ -283,6 +286,7 @@ export const en = {
     other: [
       {
         name: 'Consultation',
+        price: '$50',
         duration: '/ 1 hour',
         summary: 'A one-to-one consultation on all questions about admission to universities in China',
         features: [
@@ -296,6 +300,7 @@ export const en = {
       },
       {
         name: 'Program selection',
+        price: '$250',
         duration: '/ up to 14 days',
         summary: 'Individual selection of academic programs based on your criteria',
         features: [
@@ -310,6 +315,7 @@ export const en = {
       },
       {
         name: 'Language courses',
+        price: '$850',
         duration: '/ up to 6 months',
         summary: 'Full support for annual or semester Chinese language courses',
         paymentNote: 'Paid in 4–5 installments',
@@ -343,6 +349,8 @@ export const en = {
     sending: 'Sending...',
     success: 'Request sent! I will get back to you as soon as I can.',
     error: 'Sending failed. Please try again.',
+    consent: 'I agree to the processing of my personal data and accept the',
+    consentLink: 'privacy policy',
     serviceOptions: ['Package 1+1', 'Package 3+3', 'Package 5+5', 'Consultation', 'Program selection', 'Language courses'],
   },
   testimonials: {
@@ -413,5 +421,43 @@ export const en = {
     description:
       'In Chinese philosophy, 道 dào means the path that reflects the natural flow of life and the harmony of the universe. On the path to knowledge, dao stands for seeking truth, constant growth, and self-cultivation — following your inner way in search of deeper understanding of the world.',
     copyright: 'Copyright © 2026. All right reserved to',
+    privacy: 'Privacy policy',
+  },
+  privacy: {
+    metaTitle: 'Privacy Policy | ChinaDao',
+    metaDescription:
+      'ChinaDao privacy policy: what the inquiry form collects, why it is needed, and how the data is handled.',
+    title: 'Privacy policy',
+    updated: 'Published: 2 September 2026',
+    sections: [
+      {
+        heading: '1. Who processes the data',
+        text: 'The personal data operator is Ekaterina Gantimurova (ChinaDao brand), website https://www.chinadao.ru/. You can get in touch through the form on this site or the messengers listed in the contact section.',
+      },
+      {
+        heading: '2. What data is collected',
+        text: 'Through the inquiry form you may send your name, chosen messenger, username, the service you are interested in, and a message. You provide this information voluntarily. There is no mandatory registration on the site.',
+      },
+      {
+        heading: '3. Why it is needed',
+        text: 'The data is used only to reply to your inquiry, clarify the request, and provide university admission services for China. There are no marketing newsletters, no selling of contact lists, and no sharing of data with third parties for their marketing.',
+      },
+      {
+        heading: '4. Who else may receive the data',
+        text: 'The form is processed by Formspree (Formspree, Inc., USA): the request is sent to the service’s secure server and then emailed to the operator. This is a cross-border transfer required to deliver your message. The site is hosted by Vercel. Messenger platforms (Telegram, WhatsApp, Instagram, VK) process chats under their own rules if you write there directly.',
+      },
+      {
+        heading: '5. How long data is kept',
+        text: 'Inquiries are kept for as long as needed to reply and continue the conversation about the service, or longer if the law requires it. On request, the inquiry and related messages can be deleted unless there is a duty to retain them.',
+      },
+      {
+        heading: '6. Your rights',
+        text: 'You may request information about your data, have it corrected or deleted, and withdraw consent by writing through the form or a messenger. Withdrawal does not affect processing that already took place before the withdrawal.',
+      },
+      {
+        heading: '7. Consent',
+        text: 'By submitting the form you consent to the processing of the personal data you provided under this policy. The inquiry is not sent without consent.',
+      },
+    ],
   },
 }

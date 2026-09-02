@@ -6,7 +6,7 @@ import './Header.css'
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
-  const { t, lang } = useLocale()
+  const { t, lang, page, navigate } = useLocale()
 
   useEffect(() => {
     document.body.classList.toggle('nav-open', menuOpen)
@@ -31,7 +31,7 @@ export default function Header() {
       href={link.href}
       className="header__link"
       onClick={(event) => {
-        scrollToHref(event, link.href)
+        scrollToHref(event, link.href, navigate)
         closeMenu()
       }}
     >
@@ -48,7 +48,7 @@ export default function Header() {
             href={pathForLang(lang)}
             className="header__logo"
             onClick={(event) => {
-              scrollToHref(event, '#')
+              scrollToHref(event, '#', navigate)
               closeMenu()
             }}
           >

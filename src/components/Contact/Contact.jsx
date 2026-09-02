@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { img, contactForm } from '../../data/content'
-import { useLocale } from '../../i18n/LocaleContext'
+import { useLocale, pathForPage } from '../../i18n/LocaleContext'
 import SocialIcons from '../shared/SocialIcons'
 import ImageButton from '../shared/ImageButton'
 import Reveal from '../shared/Reveal'
@@ -9,7 +9,7 @@ import './Contact.css'
 export default function Contact() {
   const [status, setStatus] = useState(null)
   const [loading, setLoading] = useState(false)
-  const { t } = useLocale()
+  const { t, lang, navigate } = useLocale()
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -91,6 +91,27 @@ export default function Contact() {
             <label className="contact__field">
               <span className="contact__label">{t.contact.message}</span>
               <textarea name="Сообщение" required rows={4} />
+            </label>
+
+            <label className="contact__consent">
+              <input
+                type="checkbox"
+                name="Согласие с политикой конфиденциальности"
+                value="да"
+                required
+              />
+              <span>
+                {t.contact.consent}{' '}
+                <a
+                  href={pathForPage(lang, 'privacy')}
+                  onClick={(event) => {
+                    event.preventDefault()
+                    navigate(pathForPage(lang, 'privacy'))
+                  }}
+                >
+                  {t.contact.consentLink}
+                </a>
+              </span>
             </label>
 
             <div className="contact__submit-row">

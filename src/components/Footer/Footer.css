@@ -105,6 +105,16 @@
   color: #fff;
 }
 
+.footer__legal {
+  color: #ababab;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.footer__legal:hover {
+  color: #fff;
+}
+
 @media (max-width: 1199px) {
   .footer {
     padding: 40px 0 40px;

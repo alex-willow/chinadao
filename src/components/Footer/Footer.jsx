@@ -1,12 +1,12 @@
 import { img } from '../../data/content'
-import { useLocale, pathForLang } from '../../i18n/LocaleContext'
+import { useLocale, pathForLang, pathForPage } from '../../i18n/LocaleContext'
 import SocialIcons from '../shared/SocialIcons'
 import Reveal from '../shared/Reveal'
 import { scrollToHref } from '../../utils/scrollTo'
 import './Footer.css'
 
 export default function Footer() {
-  const { t, lang } = useLocale()
+  const { t, lang, page, navigate } = useLocale()
 
   return (
     <footer className="footer">
@@ -16,7 +16,7 @@ export default function Footer() {
             <a
               href={pathForLang(lang)}
               className="footer__logo"
-              onClick={(event) => scrollToHref(event, '#')}
+              onClick={(event) => scrollToHref(event, '#', navigate)}
             >
               <img
                 src={img('logo-light.png')}
@@ -35,7 +35,7 @@ export default function Footer() {
             <ul>
               {t.nav.links.map((l) => (
                 <li key={l.href}>
-                  <a href={l.href} onClick={(event) => scrollToHref(event, l.href)}>{l.label}</a>
+                  <a href={l.href} onClick={(event) => scrollToHref(event, l.href, navigate)}>{l.label}</a>
                 </li>
               ))}
             </ul>
@@ -49,6 +49,18 @@ export default function Footer() {
 
         <p className="footer__copy">
           {t.footer.copyright} <span>ChinaDao</span>
+          {' · '}
+          <a
+            className="footer__legal"
+            href={pathForPage(lang, 'privacy')}
+            onClick={(event) => {
+              event.preventDefault()
+              if (page !== 'privacy') navigate(pathForPage(lang, 'privacy'))
+              else window.scrollTo({ top: 0, behavior: 'smooth' })
+            }}
+          >
+            {t.footer.privacy}
+          </a>
         </p>
       </Reveal>
     </footer>
