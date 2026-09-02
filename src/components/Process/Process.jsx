@@ -165,7 +165,9 @@ export default function Process() {
       }
 
       if (frozen.current) {
-        if (window.scrollY < freezeY.current - 8) {
+        // No hysteresis: a frozen deck drifts with the page, so it must hand back to the sticky
+        // layout the moment the scroll goes above the park point.
+        if (window.scrollY < freezeY.current) {
           thaw()
           layout()
         }
