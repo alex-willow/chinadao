@@ -6,7 +6,7 @@
   width: 100%;
   padding: 80px;
   background: #f0f5fa;
-  overflow: visible;
+  overflow-x: hidden;
   scroll-margin-top: 73px;
 }
 

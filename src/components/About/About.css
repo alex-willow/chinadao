@@ -2,7 +2,7 @@
   position: relative;
   width: 100%;
   padding: 80px;
-  overflow: visible;
+  overflow-x: hidden;
 }
 
 .about__inner {
@@ -80,6 +80,10 @@
   object-fit: cover;
   transform: rotate(-1deg);
   pointer-events: none;
+}
+
+html[lang='en'] .about__doodle {
+  width: 148px;
 }
 
 .about__text {
@@ -266,7 +270,7 @@
   }
 
   .about__bg-map {
-    width: 621px;
+    width: min(621px, 160%);
   }
 
   .about-more__row {
@@ -300,6 +304,10 @@
     width: 156px;
     height: 8px;
     left: -3px;
+  }
+
+  html[lang='en'] .about__doodle {
+    width: 118px;
   }
 
   .about__text p,

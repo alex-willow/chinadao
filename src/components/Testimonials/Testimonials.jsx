@@ -76,8 +76,8 @@ export default function Testimonials() {
     <section className="testimonials" id="testimonials">
       <div className="testimonials__inner">
         <Reveal className="testimonials__header">
-          <h2 className="testimonials__title">{t.testimonials.title}</h2>
-          <div className="testimonials__hart-wrap">
+          <h2 className="testimonials__title">
+            {t.testimonials.title}
             <img
               src={img('quotes.png')}
               alt=""
@@ -85,7 +85,7 @@ export default function Testimonials() {
               loading="lazy"
               decoding="async"
             />
-          </div>
+          </h2>
         </Reveal>
 
         <Reveal className="testimonials__list reveal-stagger">

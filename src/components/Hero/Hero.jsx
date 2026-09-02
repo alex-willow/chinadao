@@ -5,13 +5,13 @@ import Offers from '../Offers/Offers'
 import './Hero.css'
 
 export default function Hero() {
-  const { t } = useLocale()
+  const { t, lang } = useLocale()
 
   return (
     <section className="hero-section">
       <div className="hero">
         <div className="hero__content">
-          <div className="hero__text-col">
+          <div className="hero__text-col" data-hero-lang={lang}>
             <h1 className="hero__title">
               <span className="hero__title-line">{t.hero.titleLines[0]}</span>
               <span className="hero__title-line">

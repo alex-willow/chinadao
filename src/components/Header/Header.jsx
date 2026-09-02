@@ -41,7 +41,16 @@ export default function Header() {
   ))
 
   return (
-    <header className={`header ${menuOpen ? 'header--open' : ''}`}>
+    <>
+      {menuOpen && (
+        <button
+          type="button"
+          className="header__backdrop"
+          aria-label={t.nav.closeMenu}
+          onClick={closeMenu}
+        />
+      )}
+      <header className={`header ${menuOpen ? 'header--open' : ''}`}>
       <nav className="header__nav" aria-label={t.nav.aria}>
         <div className="header__inner">
           <a
@@ -63,15 +72,6 @@ export default function Header() {
               </span>
             </span>
           </a>
-
-          {menuOpen && (
-            <button
-              type="button"
-              className="header__backdrop"
-              aria-label={t.nav.closeMenu}
-              onClick={closeMenu}
-            />
-          )}
 
           <div className="header__panel">
             <span className="header__panel-shape" aria-hidden="true" />
@@ -95,5 +95,6 @@ export default function Header() {
         </div>
       </nav>
     </header>
+    </>
   )
 }

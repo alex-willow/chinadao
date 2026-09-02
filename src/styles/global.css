@@ -34,6 +34,13 @@ html {
   }
 }
 
+html,
+body,
+#root,
+main {
+  max-width: 100%;
+}
+
 body {
   font-family: 'Inter', 'Plus Jakarta Sans', sans-serif;
   font-size: 16px;

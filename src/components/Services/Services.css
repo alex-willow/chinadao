@@ -42,6 +42,10 @@
   z-index: 1;
 }
 
+html[lang='en'] .services__doodle {
+  width: 340px;
+}
+
 .services__tabs {
   display: flex;
   justify-content: center;
@@ -238,14 +242,31 @@
 
 @media (max-width: 777px) {
   .services {
-    padding: 60px 20px;
+    padding: 28px 20px;
+  }
+
+  .services__inner {
+    gap: 20px;
+  }
+
+  .services__header {
+    padding-bottom: 22px;
   }
 
   .services__title {
     font-size: 27px;
   }
 
-  .services__doodle,
+  .services__doodle {
+    width: min(260px, 90%);
+    height: auto;
+    bottom: 4px;
+  }
+
+  html[lang='en'] .services__doodle {
+    width: min(168px, 72%);
+  }
+
   .services__tabs,
   .services__desktop {
     display: none;
@@ -265,12 +286,15 @@
 
   .services__panel {
     order: 0;
+    flex: none;
     width: 100%;
     gap: 20px;
+    overflow: visible;
   }
 
   .services__photo-col {
     order: 1;
+    flex: none;
     width: 100%;
     padding: 15px 15px 0 0;
   }
@@ -283,7 +307,8 @@
   .services__deco--1,
   .services__deco--2,
   .services__deco--3 {
-    width: 253px;
+    width: min(253px, 100%);
+    max-width: 100%;
     height: auto;
     left: auto;
     right: 0;
@@ -292,14 +317,14 @@
   }
 
   .services__deco--1 {
-    width: 295px;
+    width: min(295px, 100%);
   }
 
   .services__deco--2 {
-    width: 314px;
+    width: min(314px, 100%);
   }
 
   .services__deco--3 {
-    width: 213px;
+    width: min(213px, 100%);
   }
 }

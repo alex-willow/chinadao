@@ -1,6 +1,7 @@
 .offers {
   padding: 80px;
   background: linear-gradient(180deg, #fff 0%, #f0f5fa 100%);
+  overflow-x: hidden;
 }
 
 .offers__container {

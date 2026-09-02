@@ -250,8 +250,8 @@ body.nav-open {
   .header__backdrop {
     display: block;
     position: fixed;
-    inset: 64px 0 0;
-    z-index: 1;
+    inset: 0;
+    z-index: 99;
     border: 0;
     padding: 0;
     background: rgba(14, 23, 40, 0.28);

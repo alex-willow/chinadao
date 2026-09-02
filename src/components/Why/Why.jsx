@@ -32,8 +32,11 @@ export default function Why() {
         loading="lazy"
         decoding="async"
       />
-      <Reveal className="why__inner">
-        <h2 className="why__title">{t.why.title}</h2>
+        <Reveal className="why__inner">
+          <div className="why__title-wrap">
+            <h2 className="why__title">{t.why.title}</h2>
+            <img src={img('services-doodle.png')} alt="" className="why__doodle" loading="lazy" decoding="async" />
+          </div>
         <div className="why__list">
           {t.why.items.map((item, i) => {
             const isOpen = open === i

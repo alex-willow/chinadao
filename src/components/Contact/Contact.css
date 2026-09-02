@@ -3,6 +3,7 @@
   padding: 80px 80px 89px;
   background: #fff;
   scroll-margin-top: 73px;
+  overflow-x: hidden;
 }
 
 .contact__inner {
