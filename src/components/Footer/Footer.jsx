@@ -30,26 +30,29 @@ export default function Footer() {
             <p className="footer__desc">{t.footer.description}</p>
           </div>
 
-          <div className="footer__col">
-            <p className="footer__heading">{t.footer.nav}</p>
-            <ul>
-              {t.nav.links.map((l) => (
-                <li key={l.href}>
-                  <a href={l.href} onClick={(event) => scrollToHref(event, l.href, navigate)}>{l.label}</a>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <div className="footer__links">
+            <div className="footer__col">
+              <p className="footer__heading">{t.footer.nav}</p>
+              <ul>
+                {t.nav.links.map((l) => (
+                  <li key={l.href}>
+                    <a href={l.href} onClick={(event) => scrollToHref(event, l.href, navigate)}>{l.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          <div className="footer__col">
-            <p className="footer__heading">{t.footer.contacts}</p>
-            <SocialIcons variant="footer" />
+            <div className="footer__col">
+              <p className="footer__heading">{t.footer.contacts}</p>
+              <SocialIcons variant="footer" />
+            </div>
           </div>
         </div>
 
         <p className="footer__copy">
-          {t.footer.copyright} <span>ChinaDao</span>
-          {' · '}
+          <span className="footer__copy-line">
+            {t.footer.copyright} <span>ChinaDao</span>
+          </span>
           <a
             className="footer__legal"
             href={pathForPage(lang, 'privacy')}

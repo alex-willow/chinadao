@@ -82,6 +82,7 @@ html[lang='en'] .services__doodle {
   line-height: 1.2;
   color: rgba(17, 16, 17, 0.4);
   white-space: nowrap;
+  transition: color 0.35s ease;
 }
 
 .services__tab--active span:first-child {
@@ -91,24 +92,45 @@ html[lang='en'] .services__doodle {
 .services__tab-indicator {
   display: block;
   width: 100%;
-  height: 2px;
-  border-radius: 4px;
-  background: rgba(17, 16, 17, 0.6);
-  opacity: 0.12;
+  height: 8px;
+  background: rgba(17, 16, 17, 0.22);
+  -webkit-mask: url('/images/nav-line.webp') center / 100% 100% no-repeat;
+  mask: url('/images/nav-line.webp') center / 100% 100% no-repeat;
+  transition: background 0.35s ease;
 }
 
 .services__tab--active .services__tab-indicator {
-  background: rgba(27, 118, 245, 0.67);
-  opacity: 1;
+  background: #1b76f5;
 }
 
 .services__mobile {
   display: none;
 }
 
+.services__list,
 .services__desktop,
 .services__row {
   width: 100%;
+}
+
+.services__list {
+  display: grid;
+  width: 100%;
+}
+
+.services__list .services__row {
+  grid-area: 1 / 1;
+  display: flex;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.services__list .services__row.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  z-index: 1;
 }
 
 .services__row {
@@ -267,15 +289,24 @@ html[lang='en'] .services__doodle {
     width: min(168px, 72%);
   }
 
-  .services__tabs,
-  .services__desktop {
+  .services__tabs {
     display: none;
   }
 
-  .services__mobile {
+  .services__list {
     display: flex;
     flex-direction: column;
     gap: 40px;
+  }
+
+  .services__list .services__row,
+  .services__list .services__row.is-active {
+    display: flex;
+    grid-area: auto;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: none;
   }
 
   .services__row {

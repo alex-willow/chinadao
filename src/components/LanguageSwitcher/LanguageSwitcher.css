@@ -23,7 +23,7 @@
 
 .lang-switch__trigger:hover .drawn--outline::after,
 .lang-switch__trigger--open .drawn--outline::after {
-  background: #e3f1ff;
+  background: #f0f5fa;
 }
 
 .lang-switch__flag,
@@ -60,11 +60,18 @@
   background: none;
   border: none;
   box-shadow: none;
+  visibility: hidden;
+  pointer-events: none;
   filter:
     drop-shadow(0 1px 0 #d0d5dd)
     drop-shadow(0 -1px 0 #d0d5dd)
     drop-shadow(1px 0 0 #d0d5dd)
     drop-shadow(-1px 0 0 #d0d5dd);
+}
+
+.lang-switch__menu.is-open {
+  visibility: visible;
+  pointer-events: auto;
 }
 
 .lang-switch__menu::before,
@@ -74,8 +81,8 @@
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  -webkit-mask: url('/images/card-shape.png') center / 100% 100% no-repeat;
-  mask: url('/images/card-shape.png') center / 100% 100% no-repeat;
+  -webkit-mask: url('/images/card-shape.webp') center / 100% 100% no-repeat;
+  mask: url('/images/card-shape.webp') center / 100% 100% no-repeat;
 }
 
 .lang-switch__menu::before {
@@ -117,7 +124,6 @@
 
 .lang-switch__option-hover {
   opacity: 0;
-  transition: opacity 0.18s ease;
 }
 
 .lang-switch__option:hover .lang-switch__option-hover,
@@ -127,7 +133,7 @@
 
 .lang-switch__option:hover .drawn--outline::after,
 .lang-switch__option--active .drawn--outline::after {
-  background: #e3f1ff;
+  background: #f0f5fa;
 }
 
 .lang-switch__option:hover,

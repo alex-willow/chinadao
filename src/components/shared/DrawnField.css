@@ -1,0 +1,61 @@
+.drawn-field {
+  position: relative;
+  width: 100%;
+}
+
+.drawn-field input,
+.drawn-field textarea {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: 42px;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.25;
+  color: #0e1728;
+}
+
+.drawn-field input::placeholder,
+.drawn-field textarea::placeholder {
+  color: #98a2b3;
+  opacity: 1;
+}
+
+.drawn-field:not(.is-filled) input,
+.drawn-field:not(.is-filled) textarea {
+  color: #98a2b3;
+}
+
+.drawn-field--area textarea {
+  height: auto;
+  min-height: 112px;
+  padding: 12px 14px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.drawn-field .drawn--outline::after {
+  background: #fff;
+}
+
+.drawn-field:hover .drawn--outline::after,
+.drawn-field:focus-within .drawn--outline::after,
+.drawn-field.is-filled .drawn--outline::after {
+  background: #f0f5fa;
+}
+
+.drawn-field input:-webkit-autofill,
+.drawn-field textarea:-webkit-autofill {
+  -webkit-text-fill-color: #0e1728;
+  transition: background-color 9999s ease-out;
+}

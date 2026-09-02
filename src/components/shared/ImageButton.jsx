@@ -2,8 +2,8 @@ import { useLocale } from '../../i18n/LocaleContext'
 import { scrollToHref } from '../../utils/scrollTo'
 import './ImageButton.css'
 
-const bgDefault = '/images/button.png'
-const bgHover = '/images/button-hover.png'
+const bgDefault = '/images/button.webp'
+const bgHover = '/images/button-hover.webp'
 
 function ButtonInner({ children }) {
   return (

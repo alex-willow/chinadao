@@ -52,31 +52,35 @@ export default function LanguageSwitcher({ className = '', variant = 'compact', 
         <Chevron open={open} />
       </button>
 
-      {open && (
-        <ul className="lang-switch__menu" role="listbox" aria-label={t.nav.language}>
-          {LANGUAGES.map((item) => (
-            <li key={item.value}>
-              <a
-                href={pathForPage(item.value, page)}
-                hrefLang={item.value}
-                className={`lang-switch__option${item.value === lang ? ' lang-switch__option--active' : ''}`}
-                role="option"
-                aria-selected={item.value === lang}
-                onClick={(event) => {
-                  event.preventDefault()
-                  setLang(item.value)
-                  setOpen(false)
-                  onPicked?.()
-                }}
-              >
-                <span className="drawn drawn--outline lang-switch__option-hover" aria-hidden="true" />
-                <CountryFlag country={item.country} />
-                <span>{item.label}</span>
-              </a>
-            </li>
-          ))}
-        </ul>
-      )}
+      <ul
+        className={`lang-switch__menu${open ? ' is-open' : ''}`}
+        role="listbox"
+        aria-label={t.nav.language}
+        aria-hidden={!open}
+      >
+        {LANGUAGES.map((item) => (
+          <li key={item.value}>
+            <a
+              href={pathForPage(item.value, page)}
+              hrefLang={item.value}
+              className={`lang-switch__option${item.value === lang ? ' lang-switch__option--active' : ''}`}
+              role="option"
+              aria-selected={item.value === lang}
+              tabIndex={open ? 0 : -1}
+              onClick={(event) => {
+                event.preventDefault()
+                setLang(item.value)
+                setOpen(false)
+                onPicked?.()
+              }}
+            >
+              <span className="drawn drawn--outline lang-switch__option-hover" aria-hidden="true" />
+              <CountryFlag country={item.country} />
+              <span>{item.label}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
   )
 }

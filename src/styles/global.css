@@ -130,8 +130,8 @@ ul {
   content: '';
   position: absolute;
   inset: 0;
-  -webkit-mask: url('/images/button.png') center / 100% 100% no-repeat;
-  mask: url('/images/button.png') center / 100% 100% no-repeat;
+  -webkit-mask: url('/images/button.webp') center / 100% 100% no-repeat;
+  mask: url('/images/button.webp') center / 100% 100% no-repeat;
 }
 
 .drawn--outline::before {
@@ -148,9 +148,9 @@ ul {
 }
 
 .drawn--blue::after {
-  background: #e3f1ff;
-  -webkit-mask-image: url('/images/button-hover.png');
-  mask-image: url('/images/button-hover.png');
+  background: #f0f5fa;
+  -webkit-mask-image: url('/images/button-hover.webp');
+  mask-image: url('/images/button-hover.webp');
 }
 
 .drawn-photo {
@@ -159,13 +159,13 @@ ul {
 
 .drawn-photo__back,
 .drawn-photo__frame {
-  -webkit-mask: url('/images/photo-shape.png') center / 100% 100% no-repeat;
-  mask: url('/images/photo-shape.png') center / 100% 100% no-repeat;
+  -webkit-mask: url('/images/photo-shape.webp') center / 100% 100% no-repeat;
+  mask: url('/images/photo-shape.webp') center / 100% 100% no-repeat;
 }
 
 .drawn-photo__back {
-  -webkit-mask-image: url('/images/photo-shape-back.png');
-  mask-image: url('/images/photo-shape-back.png');
+  -webkit-mask-image: url('/images/photo-shape-back.webp');
+  mask-image: url('/images/photo-shape-back.webp');
 }
 
 .drawn-photo__back {

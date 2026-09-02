@@ -3,6 +3,7 @@ import { img, testimonials, modalTestimonials } from '../../data/content'
 import { useLocale } from '../../i18n/LocaleContext'
 import ImageButton from '../shared/ImageButton'
 import Reveal from '../shared/Reveal'
+import AccordionFold from '../shared/AccordionFold'
 import './Testimonials.css'
 
 function mergeReviews(translated, originals) {
@@ -73,7 +74,7 @@ export default function Testimonials() {
   const extra = mergeReviews(t.testimonials.extra, modalTestimonials).filter((item) => item.photo || item.text)
 
   return (
-    <section className="testimonials" id="testimonials">
+    <section className={`testimonials${expanded ? ' testimonials--open' : ''}`} id="testimonials">
       <div className="testimonials__inner">
         <Reveal className="testimonials__header">
           <h2 className="testimonials__title">
@@ -88,23 +89,31 @@ export default function Testimonials() {
           </h2>
         </Reveal>
 
-        <Reveal className="testimonials__list reveal-stagger">
-          {items.map((item) => (
-            <TestimonialCard key={item.name} t={item} copy={t.testimonials} />
-          ))}
-          {expanded &&
-            extra.map((item) => (
-              <TestimonialCard key={`more-${item.name}`} t={item} copy={t.testimonials} />
+        <Reveal className="testimonials__stack">
+          <div className="testimonials__list">
+            {items.map((item) => (
+              <TestimonialCard key={item.name} t={item} copy={t.testimonials} />
             ))}
+          </div>
+          <AccordionFold open={expanded} duration={700}>
+            <div className="testimonials__list testimonials__more">
+              {extra.map((item) => (
+                <TestimonialCard key={`more-${item.name}`} t={item} copy={t.testimonials} />
+              ))}
+            </div>
+          </AccordionFold>
         </Reveal>
 
-        {!expanded && (
-          <Reveal className="testimonials__cta-wrap">
-            <ImageButton type="button" className="testimonials__cta" onClick={() => setExpanded(true)}>
-              {t.testimonials.readAll}
-            </ImageButton>
-          </Reveal>
-        )}
+        <Reveal className={`testimonials__cta-wrap${expanded ? ' is-hidden' : ''}`}>
+          <ImageButton
+            type="button"
+            className="testimonials__cta"
+            onClick={() => setExpanded(true)}
+            disabled={expanded}
+          >
+            {t.testimonials.readAll}
+          </ImageButton>
+        </Reveal>
       </div>
     </section>
   )

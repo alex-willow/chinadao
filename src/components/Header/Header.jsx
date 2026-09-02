@@ -62,7 +62,7 @@ export default function Header() {
             }}
           >
             <span className="header__logo-icon-wrap">
-              <img src="/images/logo.png" alt="ChinaDao" className="header__logo-icon" width={51} height={57} fetchPriority="high" />
+              <img src="/images/logo.webp" alt="ChinaDao" className="header__logo-icon" width={51} height={57} fetchPriority="high" />
             </span>
             <span className="header__logo-text">
               <span className="header__logo-name">CHINADAO</span>
@@ -73,7 +73,7 @@ export default function Header() {
             </span>
           </a>
 
-          <div className="header__panel">
+            <div className="header__panel" aria-hidden={!menuOpen}>
             <span className="header__panel-shape" aria-hidden="true" />
             <div className="header__links">{links}</div>
             <LanguageSwitcher className="header__lang header__lang--mobile" variant="full" onPicked={closeMenu} />

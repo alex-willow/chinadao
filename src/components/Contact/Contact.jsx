@@ -3,12 +3,15 @@ import { img, contactForm } from '../../data/content'
 import { useLocale, pathForPage } from '../../i18n/LocaleContext'
 import SocialIcons from '../shared/SocialIcons'
 import ImageButton from '../shared/ImageButton'
+import DrawnSelect from '../shared/DrawnSelect'
+import DrawnField from '../shared/DrawnField'
 import Reveal from '../shared/Reveal'
 import './Contact.css'
 
 export default function Contact() {
   const [status, setStatus] = useState(null)
   const [loading, setLoading] = useState(false)
+  const [formKey, setFormKey] = useState(0)
   const { t, lang, navigate } = useLocale()
 
   async function handleSubmit(e) {
@@ -27,6 +30,7 @@ export default function Contact() {
       if (res.ok) {
         setStatus('success')
         form.reset()
+        setFormKey((key) => key + 1)
       } else {
         setStatus('error')
       }
@@ -47,50 +51,46 @@ export default function Contact() {
             <div className="contact__row">
               <label className="contact__field">
                 <span className="contact__label">{t.contact.name}</span>
-                <input name="Имя" type="text" required />
+                <DrawnField key={`${formKey}-name`} name="Имя" type="text" required />
               </label>
-              <label className="contact__field">
+              <div className="contact__field">
                 <span className="contact__label">{t.contact.messenger}</span>
-                <span className="contact__select">
-                  <select name="Месенджер" required defaultValue="">
-                    <option value="" disabled>
-                      {t.contact.choose}
-                    </option>
-                    {contactForm.messengerOptions.map((o) => (
-                      <option key={o} value={o}>
-                        {o}
-                      </option>
-                    ))}
-                  </select>
-                </span>
-              </label>
+                <DrawnSelect
+                  key={`${formKey}-messenger`}
+                  name="Месенджер"
+                  required
+                  placeholder={t.contact.choose}
+                  options={contactForm.messengerOptions.map((option) => ({
+                    value: option,
+                    label: option,
+                  }))}
+                />
+              </div>
             </div>
 
             <div className="contact__row">
               <label className="contact__field">
                 <span className="contact__label">{t.contact.nick}</span>
-                <input name="Ваш ник в мессенджере" type="text" required />
+                <DrawnField key={`${formKey}-nick`} name="Ваш ник в мессенджере" type="text" required />
               </label>
-              <label className="contact__field">
+              <div className="contact__field">
                 <span className="contact__label">{t.contact.service}</span>
-                <span className="contact__select">
-                  <select name="Услуга" required defaultValue="">
-                    <option value="" disabled>
-                      {t.contact.choose}
-                    </option>
-                    {contactForm.serviceOptions.map((o, i) => (
-                      <option key={o} value={o}>
-                        {t.contact.serviceOptions[i]}
-                      </option>
-                    ))}
-                  </select>
-                </span>
-              </label>
+                <DrawnSelect
+                  key={`${formKey}-service`}
+                  name="Услуга"
+                  required
+                  placeholder={t.contact.choose}
+                  options={contactForm.serviceOptions.map((option, i) => ({
+                    value: option,
+                    label: t.contact.serviceOptions[i],
+                  }))}
+                />
+              </div>
             </div>
 
             <label className="contact__field">
               <span className="contact__label">{t.contact.message}</span>
-              <textarea name="Сообщение" required rows={4} />
+              <DrawnField key={`${formKey}-message`} as="textarea" name="Сообщение" required rows={4} />
             </label>
 
             <label className="contact__consent">
@@ -101,7 +101,8 @@ export default function Contact() {
                 required
               />
               <span>
-                {t.contact.consent}{' '}
+                {t.contact.consent}
+                <br />
                 <a
                   href={pathForPage(lang, 'privacy')}
                   onClick={(event) => {

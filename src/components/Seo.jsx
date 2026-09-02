@@ -73,7 +73,7 @@ export default function Seo() {
       name: 'ChinaDao',
       url: `${SITE_URL}/`,
       image: OG_IMAGE,
-      logo: `${SITE_URL}/images/logo.png`,
+      logo: `${SITE_URL}/images/logo.webp`,
       description: t.meta.description,
       inLanguage: ['ru', 'en'],
       areaServed: 'Worldwide',
@@ -97,7 +97,7 @@ export default function Seo() {
       alternateName: 'Ekaterina Gantimurova',
       jobTitle: lang === 'en' ? 'Admission curator for universities in China' : 'Куратор поступления в вузы Китая',
       url: `${SITE_URL}/`,
-      image: `${SITE_URL}/images/hero-photo.jpg`,
+      image: `${SITE_URL}/images/hero-photo.webp`,
       worksFor: { '@id': `${SITE_URL}/#organization` },
     },
     {

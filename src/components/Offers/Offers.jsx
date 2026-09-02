@@ -52,7 +52,12 @@ export default function Offers() {
           <div className="offers__track" ref={trackRef}>
             {doubled.map((src, i) => (
               <div key={i} className="offers__card">
-                <img src={src} alt={t.offers.imageAlt} decoding="async" />
+                <img
+                  src={src}
+                  alt={t.offers.imageAlt}
+                  decoding="async"
+                  loading={i < 4 ? 'eager' : 'lazy'}
+                />
               </div>
             ))}
           </div>

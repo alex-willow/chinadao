@@ -1,3 +1,4 @@
+import { useLayoutEffect, useRef } from 'react'
 import { hero } from '../../data/content'
 import { useLocale } from '../../i18n/LocaleContext'
 import ImageButton from '../shared/ImageButton'
@@ -6,9 +7,38 @@ import './Hero.css'
 
 export default function Hero() {
   const { t, lang } = useLocale()
+  const rootRef = useRef(null)
+
+  useLayoutEffect(() => {
+    const root = rootRef.current
+    if (!root) return undefined
+
+    const ease = 'cubic-bezier(0.22, 1, 0.36, 1)'
+    const play = (el, { delay = 0, duration = 620, y = 14, fadeOnly = false } = {}) => {
+      if (!el) return
+      el.animate(
+        [
+          { opacity: 0, transform: fadeOnly ? 'none' : `translateY(${y}px)` },
+          { opacity: 1, transform: 'none' },
+        ],
+        { duration, delay, easing: ease, fill: 'backwards' },
+      )
+    }
+
+    play(root.querySelector('.hero__photo-frame'), { delay: 80, duration: 720, y: 16 })
+    play(root.querySelector('.hero__badge'), { delay: 200, duration: 620, y: 12 })
+    play(root.querySelector('.hero__lanterns'), { delay: 180, duration: 700, fadeOnly: true })
+    root.querySelectorAll('.hero__title-line').forEach((line, i) => {
+      play(line, { delay: 40 + i * 80, duration: 580, y: 12 })
+    })
+    play(root.querySelector('.hero__body'), { delay: 260, duration: 600, y: 12 })
+    play(root.querySelector('.hero__text-col .image-btn'), { delay: 340, duration: 580, y: 10 })
+
+    return undefined
+  }, [])
 
   return (
-    <section className="hero-section">
+    <section className="hero-section" ref={rootRef}>
       <div className="hero">
         <div className="hero__content">
           <div className="hero__text-col" data-hero-lang={lang}>
@@ -59,7 +89,7 @@ export default function Hero() {
               </div>
             </div>
 
-            <img src={hero.lanterns} alt="" className="hero__lanterns" decoding="async" />
+            <img src={hero.lanterns} alt="" className="hero__lanterns" width={191} height={278} decoding="async" />
           </div>
         </div>
       </div>

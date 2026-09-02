@@ -58,7 +58,7 @@ export default function SocialIcons({ className = '', variant = 'header' }) {
           {s.platform === 'VK' && (
             <span className="social-icons__vk-wrap">
               <img src={vkSrc} alt="" className="social-icons__vk" />
-              {variant === 'header' && (
+              {variant !== 'footer' && (
                 <img src={vkHover} alt="" className="social-icons__vk social-icons__vk--hover" />
               )}
             </span>

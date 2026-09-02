@@ -1,6 +1,6 @@
 import siteContent from './site-content.json'
 
-export const img = (filename) => `/images/${filename}`
+export const img = (filename) => `/images/${filename.replace(/\.(png|jpe?g)$/i, '.webp')}`
 
 export const navLinks = [
   { label: 'Обо мне', href: '#obo-mne' },
@@ -72,28 +72,28 @@ export const about = {
   extraTitle: 'Мой опыт и достижения',
   stacks: {
     block1: [
-      '/about/gallery-1.jpg',
-      '/about/gallery-2.jpg',
-      '/about/gallery-3.jpg',
-      '/about/gallery-4.jpg',
-      '/about/gallery-5.jpg',
-      '/about/gallery-6.jpg',
+      '/about/gallery-1.webp',
+      '/about/gallery-2.webp',
+      '/about/gallery-3.webp',
+      '/about/gallery-4.webp',
+      '/about/gallery-5.webp',
+      '/about/gallery-6.webp',
     ],
     block2: [
-      '/about/gallery-7.jpg',
-      '/about/gallery-8.jpg',
-      '/about/gallery-9.jpg',
-      '/about/gallery-10.jpg',
-      '/about/gallery-11.jpg',
-      '/about/gallery-12.jpg',
+      '/about/gallery-7.webp',
+      '/about/gallery-8.webp',
+      '/about/gallery-9.webp',
+      '/about/gallery-10.webp',
+      '/about/gallery-11.webp',
+      '/about/gallery-12.webp',
     ],
     block3: [
-      '/about/gallery-13.jpg',
-      '/about/gallery-14.jpg',
-      '/about/gallery-15.jpg',
-      '/about/gallery-16.jpg',
-      '/about/gallery-17.jpg',
-      '/about/gallery-18.jpg',
+      '/about/gallery-13.webp',
+      '/about/gallery-14.webp',
+      '/about/gallery-15.webp',
+      '/about/gallery-16.webp',
+      '/about/gallery-17.webp',
+      '/about/gallery-18.webp',
     ],
   },
 }

@@ -5,7 +5,7 @@
   right: 0;
   z-index: 100;
   background: none;
-  animation: header-in 0.4s ease both;
+  animation: header-in 0.18s ease both;
 }
 
 .header::before,
@@ -18,8 +18,8 @@
   bottom: -10px;
   pointer-events: none;
   z-index: 0;
-  -webkit-mask: url('/images/nav-fill.png') center / 100% 100% no-repeat;
-  mask: url('/images/nav-fill.png') center / 100% 100% no-repeat;
+  -webkit-mask: url('/images/nav-fill.webp') center / 100% 100% no-repeat;
+  mask: url('/images/nav-fill.webp') center / 100% 100% no-repeat;
 }
 
 .header::before {
@@ -160,7 +160,6 @@
 
 .header__link-shape {
   opacity: 0;
-  transition: opacity 0.18s ease;
 }
 
 .header__link-text {
@@ -264,7 +263,7 @@ body.nav-open {
     left: 16px;
     right: 16px;
     z-index: 2;
-    display: none;
+    display: flex;
     flex-direction: column;
     align-items: stretch;
     gap: 8px;
@@ -274,6 +273,8 @@ body.nav-open {
     border-radius: 0;
     box-shadow: none;
     justify-self: stretch;
+    visibility: hidden;
+    pointer-events: none;
   }
 
   .header__panel-shape {
@@ -294,13 +295,13 @@ body.nav-open {
     position: absolute;
     inset: 0;
     background: #fff;
-    -webkit-mask: url('/images/menu-shape.png') center / 100% 100% no-repeat;
-    mask: url('/images/menu-shape.png') center / 100% 100% no-repeat;
+    -webkit-mask: url('/images/menu-shape.webp') center / 100% 100% no-repeat;
+    mask: url('/images/menu-shape.webp') center / 100% 100% no-repeat;
   }
 
   .header--open .header__panel {
-    display: flex;
-    animation: header-menu-in 0.22s ease;
+    visibility: visible;
+    pointer-events: auto;
   }
 
   .header__links {
@@ -347,8 +348,8 @@ body.nav-open {
     height: 8px;
     background: #d0d5dd;
     pointer-events: none;
-    -webkit-mask: url('/images/nav-line.png') center / 100% 100% no-repeat;
-    mask: url('/images/nav-line.png') center / 100% 100% no-repeat;
+    -webkit-mask: url('/images/nav-line.webp') center / 100% 100% no-repeat;
+    mask: url('/images/nav-line.webp') center / 100% 100% no-repeat;
   }
 
   .header__burger {
@@ -366,13 +367,3 @@ body.nav-open {
   }
 }
 
-@keyframes header-menu-in {
-  from {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
-}

@@ -10,11 +10,12 @@
   justify-content: center;
   flex-shrink: 0;
   text-decoration: none;
-  color: #3376df;
-  transition: color 0.2s ease, opacity 0.2s ease;
+  color: #1c64f2;
+  transition: color 0.35s cubic-bezier(0.34, 1.2, 0.64, 1);
 }
 
-.social-icons__link:hover {
+.social-icons__link:hover,
+.social-icons__link:focus-visible {
   color: #233876;
 }
 
@@ -42,10 +43,11 @@
   position: absolute;
   inset: 0;
   opacity: 0;
-  transition: opacity 0.2s ease;
+  transition: opacity 0.35s cubic-bezier(0.34, 1.2, 0.64, 1);
 }
 
-.social-icons--header .social-icons__link--vk:hover .social-icons__vk--hover {
+.social-icons__link--vk:hover .social-icons__vk--hover,
+.social-icons__link--vk:focus-visible .social-icons__vk--hover {
   opacity: 1;
 }
 
@@ -56,6 +58,11 @@
 
 .social-icons--contact .social-icons__link {
   color: #1c64f2;
+}
+
+.social-icons--contact .social-icons__link:hover,
+.social-icons--contact .social-icons__link:focus-visible {
+  color: #233876;
 }
 
 .social-icons--contact .social-icons__icon {

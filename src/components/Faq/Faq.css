@@ -57,13 +57,14 @@
   flex-direction: column;
   gap: 20px;
   width: 100%;
+  overflow-anchor: none;
 }
 
 .faq__item {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: 24px;
+  align-items: stretch;
+  gap: 0;
   width: 100%;
   padding: 0;
   background: none;
@@ -72,10 +73,13 @@
   text-align: left;
 }
 
+.faq__item:hover .faq__item-title {
+  color: #1b4fb8;
+}
+
 .faq__head {
   display: flex;
-  flex-flow: row;
-  align-items: flex-start;
+  align-items: center;
   gap: 38px;
   width: 100%;
 }
@@ -83,15 +87,23 @@
 .faq__item-title {
   flex: 1;
   min-width: 0;
+  margin: 0;
   font-family: 'Inter', sans-serif;
   font-size: 18px;
   font-weight: 700;
   letter-spacing: 0;
   line-height: 1.4;
   color: #233876;
+  transition: color 0.2s ease;
+}
+
+.faq__fold-inner {
+  padding-right: 82px;
 }
 
 .faq__item-body {
+  margin: 0;
+  padding-top: 16px;
   font-family: 'Inter', sans-serif;
   font-size: 16px;
   line-height: 1.6;
@@ -107,15 +119,22 @@
 
 .faq__toggle {
   position: relative;
+  display: block;
   flex-shrink: 0;
   width: 44px;
   height: 44px;
-  transform: rotate(360deg);
+}
+
+.faq__disc {
+  position: absolute;
+  inset: 0;
+  transform: rotate(0deg);
+  transform-origin: center;
   transition: transform 0.45s ease;
 }
 
-.faq__item--open .faq__toggle {
-  transform: rotate(540deg);
+.faq__item--open .faq__disc {
+  transform: rotate(180deg);
 }
 
 .faq__toggle img {
@@ -127,16 +146,29 @@
   display: block;
   mix-blend-mode: multiply;
   pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.faq__toggle img.is-off {
+  opacity: 0;
 }
 
 .faq__chevron {
   position: absolute;
   top: 50%;
   left: 50%;
+  z-index: 1;
   width: 15px;
   height: 10px;
+  color: #317ff4;
   transform: translate(-50%, -50%) rotate(180deg);
   pointer-events: none;
+  transition: transform 0.45s ease, color 0.35s ease;
+}
+
+.faq__item--open .faq__chevron {
+  color: #fff;
+  transform: translate(-50%, -50%) rotate(360deg);
 }
 
 @media (max-width: 1199px) {
@@ -183,12 +215,16 @@
     font-size: 27px;
   }
 
-  .faq__item {
+  .faq__head {
     gap: 16px;
   }
 
-  .faq__head {
-    gap: 16px;
+  .faq__fold-inner {
+    padding-right: 60px;
+  }
+
+  .faq__item-body {
+    padding-top: 16px;
   }
 
   .faq__photo-col {
