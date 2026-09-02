@@ -1,0 +1,124 @@
+import { useEffect, useState } from 'react'
+import { about } from '../../data/content'
+import { useLocale } from '../../i18n/LocaleContext'
+import ImageButton from '../shared/ImageButton'
+import Reveal from '../shared/Reveal'
+import './About.css'
+
+const CARD_ROTATES = [-5, 2, -6, 7, -5, 2]
+
+function PhotoGrid({ images }) {
+  return (
+    <div className="about-more__photos">
+      <div className="about-grid">
+        {images.map((src, i) => (
+          <div
+            key={src}
+            className="about-grid__cell"
+            style={{ '--card-tilt': `${CARD_ROTATES[i % CARD_ROTATES.length]}deg` }}
+          >
+            <img src={src} alt="" className="about-grid__img" loading="lazy" decoding="async" />
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function Entry({ date, place, texts }) {
+  return (
+    <div className="about-entry">
+      <p className="about-entry__meta">{date}</p>
+      <p className="about-entry__meta">{place}</p>
+      {texts.map((text) => (
+        <p key={text}>{text}</p>
+      ))}
+    </div>
+  )
+}
+
+export default function About() {
+  const [open, setOpen] = useState(false)
+  const { t } = useLocale()
+  const entries = t.about.entries
+
+  useEffect(() => {
+    if (!open) return
+    document.getElementById('obo-mne-more')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }, [open])
+
+  return (
+    <section className={`about${open ? ' about--open' : ''}`} id="obo-mne">
+      <div className="about__inner">
+        <img src={about.bgMap} alt="" className="about__bg-map" loading="lazy" decoding="async" />
+
+        <Reveal className="about__content">
+          <div className="about__heading-row">
+            <img src={about.sticker} alt="" className="about__sticker" loading="lazy" decoding="async" />
+            <div className="about__title-wrap">
+              <h2 className="about__title">{t.about.title}</h2>
+              <img src={about.doodle} alt="" className="about__doodle" loading="lazy" decoding="async" />
+            </div>
+          </div>
+
+          <div className="about__text">
+            {t.about.paragraphs.map((p) => (
+              <p key={p}>{p}</p>
+            ))}
+          </div>
+
+          {!open && (
+            <ImageButton type="button" className="about__btn" onClick={() => setOpen(true)}>
+              {t.about.cta}
+            </ImageButton>
+          )}
+        </Reveal>
+
+        <Reveal className="about__image-col" delay={120}>
+          <div className="about__photo-frame drawn-photo">
+            <span className="drawn-photo__back" aria-hidden="true" />
+            <div className="about__photo-wrap drawn-photo__frame">
+              <img src={about.photo} alt={t.hero.photoAlt} className="about__photo" loading="lazy" decoding="async" />
+            </div>
+          </div>
+        </Reveal>
+      </div>
+
+      {open && (
+        <div className="about-more" id="obo-mne-more">
+          <div className="about-more__row about-more__row--photos-left">
+            <div className="about-more__col">
+              <h2 className="about-more__title">{t.about.extraTitle}</h2>
+              <h3 className="about-more__h3">{t.about.sections[0].heading}</h3>
+              <Entry {...entries[0]} />
+              <Entry {...entries[1]} />
+            </div>
+            <PhotoGrid images={about.stacks.block1} />
+          </div>
+
+          <div className="about-more__row about-more__row--photos-right">
+            <div className="about-more__col">
+              <h3 className="about-more__h3">{t.about.sections[1].heading}</h3>
+              <Entry {...entries[2]} />
+              <Entry {...entries[3]} />
+              <Entry {...entries[4]} />
+            </div>
+            <PhotoGrid images={about.stacks.block2} />
+          </div>
+
+          <div className="about-more__row about-more__row--photos-left">
+            <div className="about-more__col">
+              <h3 className="about-more__h3">{t.about.sections[2].heading}</h3>
+              <Entry {...entries[5]} />
+              <h3 className="about-more__h3">{t.about.sections[3].heading}</h3>
+              <Entry {...entries[6]} />
+              <Entry {...entries[7]} />
+              <Entry {...entries[8]} />
+            </div>
+            <PhotoGrid images={about.stacks.block3} />
+          </div>
+        </div>
+      )}
+    </section>
+  )
+}

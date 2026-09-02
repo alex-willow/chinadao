@@ -1,1 +1,0 @@
-import{c as e,l as t,u as n}from"./shared-lib.Sudf9l1M.mjs";n();export{t as __FramerMetadata__,e as default};

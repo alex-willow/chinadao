@@ -1,0 +1,145 @@
+.footer {
+  background: #2a2a2b;
+  padding: 80px 0 60px;
+}
+
+.footer__inner {
+  width: 100%;
+  padding: 0 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 80px;
+}
+
+.footer__grid {
+  width: 100%;
+  max-width: 1280px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(1px, 1fr));
+  gap: 60px;
+  justify-content: center;
+}
+
+.footer__brand {
+  grid-column: span 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+}
+
+.footer__logo {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.footer__logo-icon {
+  width: 48px;
+  height: 52px;
+  object-fit: contain;
+  display: block;
+}
+
+.footer__logo-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.footer__desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #ababab;
+  max-width: 500px;
+}
+
+.footer__col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.footer__heading {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  line-height: 1.6;
+  color: #fff;
+}
+
+.footer__col ul {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer__col a {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #b0b0bd;
+  text-decoration: none;
+}
+
+.footer__col a:hover {
+  color: #fff;
+}
+
+.footer__copy {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #ababab;
+  text-align: center;
+}
+
+.footer__copy span {
+  font-weight: 600;
+  color: #fff;
+}
+
+@media (max-width: 1199px) {
+  .footer {
+    padding: 40px 0 40px;
+  }
+
+  .footer__inner {
+    gap: 48px;
+  }
+
+  .footer__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  .footer__brand {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 777px) {
+  .footer {
+    padding: 40px 0 40px;
+  }
+
+  .footer__inner {
+    padding: 0 20px;
+    gap: 40px;
+  }
+
+  .footer__grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .footer__brand {
+    grid-column: auto;
+  }
+}
