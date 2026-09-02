@@ -93,6 +93,14 @@ html[lang='en'] .about__doodle {
   gap: 16px;
 }
 
+.about__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  width: 100%;
+}
+
 .about__text p,
 .about-entry p {
   font-family: 'Inter', sans-serif;
@@ -320,6 +328,25 @@ html[lang='en'] .about__doodle {
 
   .about__inner {
     flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+  }
+
+  .about__content {
+    display: contents;
+  }
+
+  .about__heading-row {
+    order: 1;
+  }
+
+  .about__image-col {
+    order: 2;
+    padding: 15px 15px 0 0;
+  }
+
+  .about__copy {
+    order: 3;
   }
 
   .about__title,
@@ -355,13 +382,18 @@ html[lang='en'] .about__doodle {
     max-width: 100%;
   }
 
-  .about__image-col {
-    padding: 15px 15px 0 0;
+  .about__btn.is-hidden {
+    display: none;
   }
 
   .about__photo-frame {
     height: auto;
     aspect-ratio: 1;
+  }
+
+  .about-more {
+    margin-top: 28px;
+    gap: 40px;
   }
 
   .about-more__row {

@@ -153,20 +153,22 @@ export default function About() {
             </div>
           </div>
 
-          <div className="about__text">
-            {t.about.paragraphs.map((p) => (
-              <p key={p}>{p}</p>
-            ))}
-          </div>
+          <div className="about__copy">
+            <div className="about__text">
+              {t.about.paragraphs.map((p) => (
+                <p key={p}>{p}</p>
+              ))}
+            </div>
 
-          <ImageButton
-            type="button"
-            className={`about__btn${open ? ' is-hidden' : ''}`}
-            onClick={() => setOpen(true)}
-            disabled={open}
-          >
-            {t.about.cta}
-          </ImageButton>
+            <ImageButton
+              type="button"
+              className={`about__btn${open ? ' is-hidden' : ''}`}
+              onClick={() => setOpen(true)}
+              disabled={open}
+            >
+              {t.about.cta}
+            </ImageButton>
+          </div>
         </Reveal>
 
         <Reveal className="about__image-col" delay={120}>
