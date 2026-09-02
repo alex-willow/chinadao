@@ -54,6 +54,18 @@ export default function Process() {
       return window.matchMedia('(max-width: 777px)').matches
     }
 
+    // Cards are stacked with a 20px offset, so a taller one would peek out from under the deck.
+    function equalize() {
+      if (mobile()) {
+        pin.style.removeProperty('--process-card-h')
+        return
+      }
+      pin.style.setProperty('--process-card-h', 'auto')
+      const cards = [...pin.querySelectorAll('.process__card')]
+      const tallest = cards.reduce((max, card) => Math.max(max, card.offsetHeight), 0)
+      pin.style.setProperty('--process-card-h', `${tallest}px`)
+    }
+
     function layout() {
       if (frozen.current || mobile()) {
         if (mobile()) pin.style.removeProperty('--process-stick')
@@ -69,9 +81,9 @@ export default function Process() {
       pin.classList.remove('process__pin--frozen')
       pin.style.position = ''
       pin.style.top = ''
+      pin.style.left = ''
       pin.style.height = ''
       pin.style.width = ''
-      pin.style.marginTop = ''
       track.style.height = ''
       frozen.current = false
     }
@@ -81,15 +93,22 @@ export default function Process() {
       return Number.isFinite(stick) ? stick : el.getBoundingClientRect().top
     }
 
+    // Scroll position at which the note card reaches its sticky stop and the whole deck is assembled.
+    function parkScroll() {
+      const trackTop = track.getBoundingClientRect().top + window.scrollY
+      return trackTop + pin.offsetTop + last.offsetTop - parkedTop(last)
+    }
+
     function freeze() {
       if (frozen.current) return
       layout()
+      const parkY = parkScroll()
       const list = [header, ...pin.querySelectorAll('.process__card')]
       const pinBox = pin.getBoundingClientRect()
-      const trackBox = track.getBoundingClientRect()
       const headerStick = parkedTop(header)
       const lastStick = parkedTop(last)
-      const lastTop = last.getBoundingClientRect().top
+      const lastHeight = last.offsetHeight
+      const flowOffset = pin.offsetTop + last.offsetTop
       const placed = list.map((el) => {
         const r = el.getBoundingClientRect()
         return {
@@ -99,13 +118,13 @@ export default function Process() {
           width: r.width,
         }
       })
-      const visualH = placed[placed.length - 1].top + last.offsetHeight
-      const pinOffset = Math.max(0, headerStick - trackBox.top)
+      const visualH = placed[placed.length - 1].top + lastHeight
+      const pinOffset = Math.max(0, flowOffset - lastStick + headerStick)
 
-      track.style.height = `${Math.max(track.offsetHeight, pinOffset + visualH)}px`
-      pin.style.marginTop = `${pinOffset}px`
-      pin.style.position = 'sticky'
-      pin.style.top = `${headerStick}px`
+      track.style.height = `${pinOffset + visualH}px`
+      pin.style.position = 'absolute'
+      pin.style.top = `${pinOffset}px`
+      pin.style.left = '0'
       pin.style.height = `${visualH}px`
       pin.style.width = '100%'
       pin.classList.add('process__pin--frozen')
@@ -120,7 +139,7 @@ export default function Process() {
       })
 
       nodes.current = list
-      freezeY.current = window.scrollY - Math.max(0, lastStick - lastTop)
+      freezeY.current = parkY
       frozen.current = true
     }
 
@@ -132,7 +151,7 @@ export default function Process() {
       }
 
       if (frozen.current) {
-        if (window.scrollY < freezeY.current) {
+        if (window.scrollY < freezeY.current - 8) {
           thaw()
           layout()
         }
@@ -140,22 +159,35 @@ export default function Process() {
       }
 
       layout()
-      const stickTop = parkedTop(last)
-      if (last.getBoundingClientRect().top <= stickTop + 1) freeze()
+      if (window.scrollY >= parkScroll()) freeze()
     }
 
+    function remeasure() {
+      if (!frozen.current) equalize()
+      sync()
+    }
+
+    equalize()
     sync()
+    let alive = true
+    document.fonts?.ready.then(() => {
+      if (alive) remeasure()
+    })
     const ro = new ResizeObserver(() => {
       if (!frozen.current) layout()
     })
     ro.observe(header)
     window.addEventListener('scroll', sync, { passive: true })
-    window.addEventListener('resize', sync)
+    window.addEventListener('resize', remeasure)
     return () => {
+      alive = false
       thaw()
+      pin.querySelectorAll('.process__card').forEach((card) => {
+        card.style.height = ''
+      })
       ro.disconnect()
       window.removeEventListener('scroll', sync)
-      window.removeEventListener('resize', sync)
+      window.removeEventListener('resize', remeasure)
     }
   }, [t.process.title])
 
@@ -216,7 +248,6 @@ export default function Process() {
                 ))}
               </ul>
             </article>
-            <div className="process__end" aria-hidden="true" />
           </div>
         </div>
       </div>
