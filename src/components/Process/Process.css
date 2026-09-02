@@ -108,8 +108,20 @@ html[lang='en'] .process__doodle {
   box-sizing: border-box;
 }
 
-.process__card:last-child {
+.process__note {
   margin-bottom: 0;
+}
+
+/*
+ * Keeps the sticky cards clamped for a while after the deck is assembled, so a scroll the main
+ * thread hasn't caught up with yet cannot squeeze them together. The track is shortened by the
+ * same amount in JS, so this slack adds no scrolling of its own.
+ */
+.process__slack {
+  width: 100%;
+  height: 200px;
+  flex-shrink: 0;
+  pointer-events: none;
 }
 
 .process__card--fill {
@@ -245,6 +257,10 @@ html[lang='en'] .process__doodle {
     height: auto;
     min-height: 0;
     overflow: hidden;
+  }
+
+  .process__slack {
+    display: none;
   }
 
   .process__icon {

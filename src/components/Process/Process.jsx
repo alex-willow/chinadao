@@ -38,13 +38,15 @@ export default function Process() {
   const pinRef = useRef(null)
   const headerRef = useRef(null)
   const lastCardRef = useRef(null)
+  const slackRef = useRef(null)
 
   useEffect(() => {
     const track = trackRef.current
     const pin = pinRef.current
     const header = headerRef.current
     const last = lastCardRef.current
-    if (!track || !pin || !header || !last) return
+    const slack = slackRef.current
+    if (!track || !pin || !header || !last || !slack) return
 
     const frozen = { current: false }
     const freezeY = { current: 0 }
@@ -68,11 +70,17 @@ export default function Process() {
 
     function layout() {
       if (frozen.current || mobile()) {
-        if (mobile()) pin.style.removeProperty('--process-stick')
+        if (mobile()) {
+          pin.style.removeProperty('--process-stick')
+          track.style.height = ''
+        }
         return
       }
       const headTop = Number.parseFloat(getComputedStyle(header).top) || 0
       pin.style.setProperty('--process-stick', `${headTop + header.offsetHeight}px`)
+      // The slack lives inside the pin but must not stretch the page, so the track drops it again.
+      const height = `${pin.offsetHeight - slack.offsetHeight}px`
+      if (track.style.height !== height) track.style.height = height
     }
 
     function thaw() {
@@ -93,10 +101,16 @@ export default function Process() {
       return Number.isFinite(stick) ? stick : el.getBoundingClientRect().top
     }
 
+    // offsetTop of a stuck card reports where it is held, not where it sits in the flow, so the
+    // note card is measured from the slack below it, which never sticks.
+    function flowTop() {
+      return slack.offsetTop - last.offsetHeight
+    }
+
     // Scroll position at which the note card reaches its sticky stop and the whole deck is assembled.
     function parkScroll() {
       const trackTop = track.getBoundingClientRect().top + window.scrollY
-      return trackTop + pin.offsetTop + last.offsetTop - parkedTop(last)
+      return trackTop + pin.offsetTop + flowTop() - parkedTop(last)
     }
 
     function freeze() {
@@ -108,7 +122,7 @@ export default function Process() {
       const headerStick = parkedTop(header)
       const lastStick = parkedTop(last)
       const lastHeight = last.offsetHeight
-      const flowOffset = pin.offsetTop + last.offsetTop
+      const flowOffset = pin.offsetTop + flowTop()
       const placed = list.map((el) => {
         const r = el.getBoundingClientRect()
         return {
@@ -162,8 +176,11 @@ export default function Process() {
       if (window.scrollY >= parkScroll()) freeze()
     }
 
+    // A resize invalidates every measurement, including the widths baked into a frozen deck.
     function remeasure() {
-      if (!frozen.current) equalize()
+      thaw()
+      equalize()
+      layout()
       sync()
     }
 
@@ -182,9 +199,9 @@ export default function Process() {
     return () => {
       alive = false
       thaw()
-      pin.querySelectorAll('.process__card').forEach((card) => {
-        card.style.height = ''
-      })
+      pin.style.removeProperty('--process-card-h')
+      pin.style.removeProperty('--process-stick')
+      track.style.height = ''
       ro.disconnect()
       window.removeEventListener('scroll', sync)
       window.removeEventListener('resize', remeasure)
@@ -248,6 +265,7 @@ export default function Process() {
                 ))}
               </ul>
             </article>
+            <div className="process__slack" aria-hidden="true" ref={slackRef} />
           </div>
         </div>
       </div>
