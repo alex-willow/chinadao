@@ -58,9 +58,16 @@
 }
 
 .drawn-select__trigger:hover .drawn--outline::after,
+.drawn-select__trigger:focus-visible .drawn--outline::after,
 .drawn-select__trigger.is-open .drawn--outline::after,
 .drawn-select__trigger.is-filled .drawn--outline::after {
   background: #f0f5fa;
+}
+
+/* Keyboard focus is shown by the drawn shape itself instead of a straight browser ring. */
+.drawn-select__trigger:focus-visible,
+.drawn-select__option:focus-visible {
+  outline: none;
 }
 
 .drawn-select__menu {
@@ -132,16 +139,19 @@
 }
 
 .drawn-select__option:hover .drawn-select__option-hover,
+.drawn-select__option:focus-visible .drawn-select__option-hover,
 .drawn-select__option.is-active .drawn-select__option-hover {
   opacity: 1;
 }
 
 .drawn-select__option:hover .drawn--outline::after,
+.drawn-select__option:focus-visible .drawn--outline::after,
 .drawn-select__option.is-active .drawn--outline::after {
   background: #f0f5fa;
 }
 
 .drawn-select__option:hover,
+.drawn-select__option:focus-visible,
 .drawn-select__option.is-active {
   color: #233876;
 }

@@ -188,7 +188,7 @@ export const faqItems = siteContent.faq
 export const contactForm = {
   title: 'Оставить заявку:',
   altText: 'Или напишите мне в мессенджере:',
-  messengerOptions: ['Telegram', 'WhatsApp', 'Instagram'],
+  messengerOptions: ['Telegram', 'VK', 'Instagram'],
   serviceOptions: ['Пакет 1+1', 'Пакет 3+3', 'Пакет 5+5', 'Консультация', 'Подбор программ', 'Языковые курсы'],
   formspreeUrl: 'https://formspree.io/f/xwvbkepn',
 }

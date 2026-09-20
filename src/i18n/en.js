@@ -444,7 +444,7 @@ export const en = {
       },
       {
         heading: '4. Who else may receive the data',
-        text: 'The form is processed by Formspree (Formspree, Inc., USA): the request is sent to the service’s secure server and then emailed to the operator. This is a cross-border transfer required to deliver your message. The site is hosted by Vercel. Messenger platforms (Telegram, WhatsApp, Instagram, VK) process chats under their own rules if you write there directly.',
+        text: 'The form is processed by Formspree (Formspree, Inc., USA): the request is sent to the service’s secure server and then emailed to the operator. This is a cross-border transfer required to deliver your message. The site is hosted by Vercel. Messenger platforms (Telegram, VK, Instagram) process chats under their own rules if you write there directly.',
       },
       {
         heading: '5. How long data is kept',

@@ -54,6 +54,12 @@
   background: #f0f5fa;
 }
 
+/* The drawn shape lights up on focus, so a straight browser ring around it only looks wrong. */
+.drawn-field input:focus-visible,
+.drawn-field textarea:focus-visible {
+  outline: none;
+}
+
 .drawn-field input:-webkit-autofill,
 .drawn-field textarea:-webkit-autofill {
   -webkit-text-fill-color: #0e1728;
